@@ -5,4 +5,6 @@ ip_addr=$(ip -o address show dev wlan0 \
    | awk '{print $4}' \
    | cut -d / -f 1)
 
-echo $ip_addr
+cd gpio_rest_controller
+
+gunicorn --bind $ip_addr:8000 wsgi
